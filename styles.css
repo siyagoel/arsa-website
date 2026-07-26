@@ -297,10 +297,24 @@ p {
 
 .meet-portrait img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  object-position: center top;
   border-radius: 2px;
-  filter: saturate(1.05);
+}
+
+.island-view {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.island-view img {
+  width: 100%;
+  height: clamp(14rem, 38vw, 28rem);
+  object-fit: cover;
+  object-position: center;
 }
 
 .experiences {
