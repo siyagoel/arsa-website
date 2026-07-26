@@ -7,6 +7,12 @@ function syncHeader() {
   header.classList.toggle("is-scrolled", window.scrollY > 40);
 }
 
+function closeMenu() {
+  nav.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open menu");
+}
+
 menuToggle.addEventListener("click", () => {
   const open = nav.classList.toggle("is-open");
   menuToggle.setAttribute("aria-expanded", String(open));
@@ -14,14 +20,16 @@ menuToggle.addEventListener("click", () => {
 });
 
 nav.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("is-open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open menu");
-  });
+  link.addEventListener("click", closeMenu);
 });
 
 window.addEventListener("scroll", syncHeader, { passive: true });
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 860) closeMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeMenu();
+});
 syncHeader();
 
 if ("IntersectionObserver" in window) {
@@ -34,7 +42,7 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
   );
 
   experienceItems.forEach((item, index) => {
