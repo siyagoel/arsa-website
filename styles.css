@@ -314,10 +314,16 @@ p {
   align-items: center;
   max-width: 1120px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.pricing-copy {
+  min-width: 0;
+  width: 100%;
 }
 
 .pricing h2 {
-  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-size: clamp(1.85rem, 6vw, 3.1rem);
   margin-bottom: 0.85rem;
 }
 
@@ -332,14 +338,15 @@ p {
   list-style: none;
   margin: 0 0 1.35rem;
   padding: 0;
+  width: 100%;
   max-width: 420px;
 }
 
 .pricing-list li {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
   padding: 1.1rem 0;
   border-top: 1px solid rgba(20, 42, 40, 0.12);
 }
@@ -349,7 +356,7 @@ p {
 }
 
 .pricing-list h3 {
-  font-size: clamp(1.2rem, 3vw, 1.4rem);
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem);
   margin-bottom: 0.2rem;
 }
 
@@ -361,18 +368,19 @@ p {
 
 .price {
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2.8vw, 1.35rem);
+  font-size: clamp(1.2rem, 4vw, 1.35rem);
   font-weight: 600;
   color: var(--teal-deep);
-  text-align: right;
-  white-space: nowrap;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
 }
 
 .price-usd {
-  display: block;
-  margin-top: 0.2rem;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 400;
   color: var(--ink-soft);
 }
@@ -382,22 +390,25 @@ p {
   font-weight: 300;
   font-size: 0.95rem;
   max-width: 42ch;
+  overflow-wrap: anywhere;
 }
 
 .pricing-note a {
   color: var(--teal);
   text-decoration: underline;
   text-underline-offset: 3px;
+  word-break: break-word;
 }
 
 .pricing-media {
   margin: 0;
   width: 100%;
+  min-width: 0;
 }
 
 .pricing-media img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: center;
   border-radius: 2px;
@@ -628,6 +639,24 @@ p {
     grid-template-columns: 1fr 1.05fr;
   }
 
+  .pricing-list li {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .price {
+    text-align: right;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+  }
+
+  .pricing-media img {
+    aspect-ratio: 4 / 3;
+  }
+
   .contact-action .btn {
     width: auto;
   }
@@ -696,6 +725,14 @@ p {
   .hero-veil {
     background:
       linear-gradient(180deg, rgba(10, 40, 38, 0.45) 0%, rgba(10, 40, 38, 0.2) 40%, rgba(8, 28, 26, 0.82) 100%);
+  }
+
+  .pricing-list {
+    max-width: none;
+  }
+
+  .pricing-media img {
+    aspect-ratio: 5 / 3;
   }
 
   .site-footer {
